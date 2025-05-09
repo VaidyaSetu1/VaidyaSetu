@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -32,8 +33,8 @@ const Header = () => {
 
         {/* Navigation links */}
         <nav className="flex items-center space-x-6">
-          <a href="#" className="hover:text-teal-400 transition">Home</a>
-          <a href="#" className="hover:text-teal-400 transition">Profile</a>
+          <Link to="/" className="hover:text-teal-400 transition">Home</Link>
+          <Link to="/profile" className="hover:text-teal-400 transition">Profile</Link>
         </nav>
       </div>
     </header>

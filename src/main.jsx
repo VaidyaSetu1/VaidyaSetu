@@ -9,6 +9,9 @@ import Home from './components/Home.jsx'
 import Search from './components/Search.jsx'
 import Profile from './components/Profile.jsx'
 import DarkLoginPage from './components/LoginPage.jsx'
+import DoctorProfile from './components/Doctor_profile.jsx'
+import Notification from './components/Noifications.jsx'
+import Appointment from './components/Appointment.jsx'
 // import User from './components/User.jsx'
 // import Github from './components/Github.jsx'
 
@@ -21,6 +24,9 @@ createRoot(document.getElementById('root')).render(
             <Route path="search" element={<Search />} />
             <Route path="profile" element={<Profile />} />
             <Route path="login" element={<DarkLoginPage />} />
+            <Route path="doctor" element= {<DoctorProfile/>}/>
+            <Route path="notification" element= {<Notification/>}/>
+            <Route path="appointment" element= {<Appointment/>}/>
           </Route>
       </Routes>
     </BrowserRouter>
