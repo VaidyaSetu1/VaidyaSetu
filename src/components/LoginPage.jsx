@@ -1,10 +1,70 @@
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from 'lucide-react';
+import AuthenticationContext from '../context/AuthenticationContext';
+import { useNavigate } from 'react-router';
+import { use } from 'react';
+import { Link } from 'react-router';
 
 export default function DarkLoginPage() {
+  const navigate = useNavigate()
+  const {login,email,setEmail,userId,setUserId} = useContext(AuthenticationContext);
+  const [password,setPassword] = useState('');
+
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+
+  const loginUser = async () => {
+    try{
+      // const response = await fetch() 
+      const response = await fetch('https://vaidyasetu.onrender.com/api/user/login',
+        {
+          method : 'POST',
+          headers : {
+            'Content-Type' : 'application/json'
+          },
+          body : JSON.stringify({
+            email : email,
+            password : password
+          })
+        }
+      )
+      const data = await response.json();
+     
+      // api goes above
+
+      let status = false;
+      if(data.message == 'Login successful' ){
+        status = true;
+        setUserId(data.user._id)
+        setEmail(data.user.email)
+      }
+      if(status){
+        login();
+        navigate('/')
+      }
+      else{
+        alert('Wrong credentials')
+      }
+    }catch(err){
+      console.error('Login error:', err);
+    }
+  }
+
+
+  // const loginUser = () => {
+    
+  //   // const allow = useValidateUser(email, password);
+  //   const allow = true;
+  //   if(allow){
+  //     login();
+  //     navigate('/')
+  //   }
+  //   else{
+  //     alert("No user Found");
+  //   }
+
+  // }
 
   return (
     <div className="flex flex-col items-center h-full bg-[#14B8A6] bg-gradient-to-b from-gray-900 to-[#14b8a6]">
@@ -92,6 +152,7 @@ export default function DarkLoginPage() {
                 type="button"
                 className="w-full flex justify-center items-center py-4 px-4 border border-transparent rounded-xl shadow-lg text-black bg-teal-500 hover:bg-teal-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-teal-500 shadow-teal-500/30"
                 style={{fontFamily: "'Poppins', sans-serif"}}
+                onClick={loginUser}
               >
                 <span className="mr-2 font-medium">Sign In</span>
                 <ArrowRight className="h-5 w-5" />
@@ -105,9 +166,9 @@ export default function DarkLoginPage() {
           <div className="mt-10 text-center pb-6">
             <p className="text-sm text-black-400" style={{fontFamily: "'Poppins', sans-serif"}}>
               Don't have an account?{' '}
-              <a href="#" className="font-medium text-teal-400 hover:text-teal-300">
+              <Link to = '/signup'>
                 Sign up
-              </a>
+              </Link>
             </p>
           </div>
         </div>
