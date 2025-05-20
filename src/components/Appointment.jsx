@@ -1,5 +1,5 @@
 import { useLocation } from "react-router";
-import {useState} from 'react';
+import { useState } from 'react';
 import useGetSlots from '../hooks/useGetSlots.js'
 import Slot from './Slot.jsx'
 
@@ -10,7 +10,6 @@ function Appointment() {
   const today = new Date().toISOString().split('T')[0];
   const [date, setDate] = useState(today);
   const slots = useGetSlots(doctorId, date);
-  console.log(slots);
 
   console.log('DoctorId:' , doctorId);
 
@@ -43,7 +42,7 @@ function Appointment() {
             {
               slots.map((slot) =>{
                 return (
-                  <Slot slot = {slot}/>
+                  <Slot slot = {slot} doctorId = {doctorId} date = {date}/>
                 )
               })
             }

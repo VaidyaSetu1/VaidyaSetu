@@ -54,24 +54,24 @@ function Profile() {
             alt="Profile"
             className="w-32 h-32 rounded-full mx-auto border-4 border-white shadow-md"
           />
-          <h2 className="text-3xl text-white font-semibold mt-4">{doctorName}</h2> {/* Dynamically set the name */}
+          <h2 className="text-3xl text-white font-semibold mt-4">{email.split('@')[0]}</h2> {/* Dynamically set the name */}
           <p className="text-white text-lg">Software Developer</p> {/* Update this based on profession if needed */}
         </div>
 
         <div className="p-8 space-y-6">
           <div className="flex justify-between items-center">
             <p className="font-semibold text-gray-800 text-lg">Email</p>
-            <p className="text-gray-600 font-medium">johndoe@example.com</p>
+            <p className="text-gray-600 font-medium">{email}</p>
           </div>
 
           <div className="flex justify-between items-center">
             <p className="font-semibold text-gray-800 text-lg">Age</p>
-            <p className="text-gray-600 font-medium">30</p>
+            <p className="text-gray-600 font-medium">21</p>
           </div>
 
           <div className="flex justify-between items-center">
             <p className="font-semibold text-gray-800 text-lg">Location</p>
-            <p className="text-gray-600 font-medium">New York, USA</p>
+            <p className="text-gray-600 font-medium">Ghaziabad</p>
           </div>
         </div>
 

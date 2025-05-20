@@ -38,6 +38,7 @@ export default function DarkLoginPage() {
         status = true;
         setUserId(data.user._id)
         setEmail(data.user.email)
+        
       }
       if(status){
         login();
